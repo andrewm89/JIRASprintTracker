@@ -1,1 +1,1 @@
-angular.module 'AngularFlaskBoilerplate.common', []
+angular.module 'JiraSprintTracker.common', []

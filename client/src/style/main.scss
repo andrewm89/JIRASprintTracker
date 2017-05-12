@@ -1,4 +1,6 @@
 @import '../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+$fa-font-path: '/static/fonts';
+@import '../../bower_components/font-awesome/scss/font-awesome.scss';
 @import 'colors';
 
 html {
@@ -28,5 +30,28 @@ body {
 
   .title {
     text-align: center;
+  }
+
+  .option-block {
+    display: block;
+    height: 200px;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+      color: $body-text-color;
+      z-index: 9999999;
+    }
+
+    i {
+      display: block;
+      font-size: 90px;
+      color: $header;
+    }
+
+    span {
+      display: block;
+      font-size: 20px;
+    }
   }
 }

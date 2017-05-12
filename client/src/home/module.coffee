@@ -1,4 +1,4 @@
-angular.module 'AngularFlaskBoilerplate.home', [
+angular.module 'JiraSprintTracker.home', [
   'ui.router'
 ]
 

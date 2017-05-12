@@ -1,3 +1,23 @@
 .container
   .title
     h1 {{ title }}
+
+  .col-sm-3
+    .option-block(ui-sref="sprint.main")
+      i.fa.fa-group(aria-hidden="true")
+      span Sprint
+
+  .col-sm-3
+    .option-block(ui-sref="bdc")
+      i.fa.fa-line-chart(aria-hidden="true")
+      span Burndown Chart
+
+  .col-sm-3
+    .option-block(ui-sref="blog")
+      i.fa.fa-pencil-square-o(aria-hidden="true")
+      span Blog
+
+  .col-sm-3
+    .option-block(ui-sref="stats")
+      i.fa.fa-bar-chart(aria-hidden="true")
+      span Statistics

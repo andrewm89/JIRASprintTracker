@@ -1,6 +1,6 @@
-angular.module 'AngularFlaskBoilerplate.home'
+angular.module 'JiraSprintTracker.home'
 .controller 'HomeMainCtrl', (
   $scope
 ) ->
 
-  $scope.title = 'Angular Flask Boilerplate'
+  $scope.title = 'JIRA Sprint Tracker'

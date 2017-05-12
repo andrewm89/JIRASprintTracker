@@ -46,7 +46,9 @@ config.input.manifest.settings =
 # Static files
 config.input.static = {}
 # Can add keys in both input and output to add static profile
-config.input.static.fonts = []
+config.input.static.fonts = [
+  'bower_components/font-awesome/fonts/*'
+]
 config.input.static.i18n = [
   "#{config.input.path}/static/i18n/*"
 ]
@@ -77,7 +79,7 @@ config.output.application = 'application.js'
 
 config.output.template = {}
 config.output.template.filename = 'templates.js'
-config.output.template.module = 'AngularFlaskBoilerplate.template'
+config.output.template.module = 'JiraSprintTracker.template'
 
 config.output.vendor = 'vendor.js'
 

@@ -1,3 +1,3 @@
-angular.module 'AngularFlaskBoilerplate.utils', [
+angular.module 'JiraSprintTracker.utils', [
   'ng'
 ]

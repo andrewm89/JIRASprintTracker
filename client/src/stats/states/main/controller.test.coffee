@@ -1,5 +1,5 @@
-describe 'HomeMainCtrl', ->
-  beforeEach module 'JiraSprintTracker.home'
+describe 'StatsMainCtrl', ->
+  beforeEach module 'JiraSprintTracker.stats'
 
   $controller = null
   $scope      = null
@@ -18,7 +18,7 @@ describe 'HomeMainCtrl', ->
 
   beforeEach ->
     @$scope = @$rootScope.$new()
-    @$controller = $controller 'HomeMainCtrl',
+    @$controller = $controller 'StatsMainCtrl',
       $scope: @$scope
       $location: @$location
 

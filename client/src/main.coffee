@@ -1,14 +1,16 @@
-angular.module 'AngularFlaskBoilerplate', [
+angular.module 'JiraSprintTracker', [
   'ng'
   'ngAnimate'
-  'ngRoute'
+  'ngMaterial'
   'ngSanitize'
-  'tmh.dynamicLocale'
   'ui.bootstrap'
   'ui.router'
-  'angularMoment'
-  'AngularFlaskBoilerplate.home'
-  'AngularFlaskBoilerplate.template'
+  'JiraSprintTracker.home'
+  'JiraSprintTracker.bdc'
+  'JiraSprintTracker.blog'
+  'JiraSprintTracker.sprint'
+  'JiraSprintTracker.stats'
+  'JiraSprintTracker.template'
 ]
 
 .run ($location, $rootScope, $window) ->
