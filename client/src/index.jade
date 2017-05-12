@@ -1,0 +1,31 @@
+doctype html
+html(
+  lang="en",
+  xmlns:ng="http://angularjs.org",
+  id="ng-app",
+  ng-app="AngularFlaskBoilerplate"
+)
+  head
+    base(href="/")
+    meta(charset="utf-8")
+    title Angular Flask Boilerplate
+    link(rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon")
+    link(href="static/css/main.css", rel="stylesheet")
+    meta(name="viewport", content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    meta(name="apple-mobile-web-app-capable", content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style", content="black")
+    meta(name="apple-touch-fullscreen" content="yes")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+
+  body
+    .header
+    .view-container
+      .view-frame.container-fluid(ui-view)
+
+    <!--[if lte IE 8]>
+    include ./static/templates/ie8
+    <![endif]-->
+
+    script(src="static/js/vendor.js")
+    script(src="static/js/templates.js")
+    script(src="static/js/application.js")

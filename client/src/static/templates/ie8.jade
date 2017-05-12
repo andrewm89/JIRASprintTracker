@@ -1,0 +1,21 @@
+div
+  div
+    img(src='static/images/ie8-logo.png')
+  div
+    b
+      | Sorry, IE8 and lower are not supported...
+      br
+      | Please download another browser or a newer IE version on "Apps on Demand"
+      br
+      br
+    b
+      | Désolé, les versions d'Internet Explorer inférieures ou égales à 8 ne sont pas supportées...
+      br
+      | Veuillez télécharger un autre navigateur ou une version plus récente de Internet Explorer sur "Apps on Demand"
+script.
+  window.onload = function() {
+    var elem;
+    elem = document.getElementById('error-ie8-handler');
+    elem.style.width = window.document.documentElement.offsetWidth + 'px';
+    elem.style.height = window.document.documentElement.offsetHeight + 'px';
+  };

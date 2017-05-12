@@ -1,0 +1,68 @@
+{
+  "name": "TIND_selfcheck",
+  "version": "0.0.0",
+  "description": "No Description",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.8",
+    "angular-animate": "1.4.8",
+    "angular-bootstrap": "0.14.3",
+    "angular-cookies": "1.4.8",
+    "angular-dynamic-locale": "0.1.29",
+    "angular-i18n": "1.4.8",
+    "angular-moment": "1.0.1",
+    "angular-permission": "1.1.1",
+    "angular-resource": "1.4.8",
+    "angular-route": "1.5.1",
+    "angular-sanitize": "1.4.8",
+    "angular-translate-interpolation-messageformat": "2.8.1",
+    "angular-translate-loader-static-files": "2.8.1",
+    "angular-translate-storage-cookie": "2.8.1",
+    "angular-ui-router": "0.2.15",
+    "bootstrap-sass": "3.3.7",
+    "crypto-js": "3.1.5",
+    "lodash": "3.10.1",
+    "messageformat": "0.1.8",
+    "please-wait": "0.0.5"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.4.8",
+    "angular-scenario": "1.4.8"
+  },
+  "overrides": {
+    "angular-i18n": {
+      "main": [],
+      "dependencies": {}
+    },
+    "messageformat": {
+      "main": [
+        "messageformat.js",
+        "locale/en.js"
+      ],
+      "dependencies": {}
+    },
+    "please-wait": {
+      "main": [],
+      "dependencies": {}
+    },
+    "crypto-js": {
+      "main": [
+        "crypto-js.js"
+      ],
+      "dependencies": {}
+    }
+  },
+  "resolutions": {
+    "angular": "1.4.8",
+    "angular-animate": "1.4.8",
+    "angular-bootstrap": "0.14.3",
+    "angular-sanitize": "1.4.8"
+  }
+}

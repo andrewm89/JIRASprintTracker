@@ -1,0 +1,13 @@
+app:
+  build: .
+  working_dir: /app
+  volumes:
+    - .:/app
+  links:
+   - db
+  ports:
+    - "5000:5000"
+  command: python /app/runserver.py
+
+db:
+  image: mongo

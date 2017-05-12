@@ -1,0 +1,32 @@
+@import '../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+@import 'colors';
+
+html {
+  min-width: 320px;
+  background-color: $background;
+}
+
+body {
+  padding-top: 50px;
+  min-width: 320px;
+  font-family: "Open Sans", sans-serif;
+  color: $body-text-color;
+}
+
+.header {
+  position:absolute;
+  top:0;
+  left: 0;
+  width:100%;
+  height: 50px;
+  background-color: $header;
+}
+
+.view-container {
+  padding-top: 0px;
+  background-color: $background;
+
+  .title {
+    text-align: center;
+  }
+}
