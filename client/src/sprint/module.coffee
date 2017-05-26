@@ -19,3 +19,8 @@ angular.module 'JiraSprintTracker.sprint', [
     url: '/staffing'
     controller: 'SprintStaffingCtrl'
     templateUrl: 'sprint/states/staffing/view.html'
+
+  .state 'sprint.team',
+    url: '/team'
+    controller: 'SprintTeamCtrl'
+    templateUrl: 'sprint/states/team/view.html'

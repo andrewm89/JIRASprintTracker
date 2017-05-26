@@ -1,4 +1,4 @@
-describe 'SprintStaffingCtrl', ->
+describe 'SprintTeamCtrl', ->
   beforeEach module 'JiraSprintTracker.sprint'
 
   $controller = null
@@ -18,7 +18,7 @@ describe 'SprintStaffingCtrl', ->
 
   beforeEach ->
     @$scope = @$rootScope.$new()
-    @$controller = $controller 'SprintStaffingCtrl',
+    @$controller = $controller 'SprintTeamCtrl',
       $scope: @$scope
       $location: @$location
 

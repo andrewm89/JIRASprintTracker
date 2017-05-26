@@ -1,6 +1,7 @@
 angular.module 'JiraSprintTracker', [
   'ng'
   'ngAnimate'
+  'ngCookies'
   'ngMaterial'
   'ngSanitize'
   'ui.bootstrap'
@@ -21,3 +22,5 @@ angular.module 'JiraSprintTracker', [
 
 .config ($urlRouterProvider) ->
   $urlRouterProvider.otherwise '/'
+
+.constant('_', window._)

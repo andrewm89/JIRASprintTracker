@@ -1,0 +1,11 @@
+.container
+  .title
+    h1 {{ title }}
+
+  table.table.user-table
+    thead
+      th User
+      th Email
+    tr(ng-repeat="member in members")
+      td {{ member.displayName }}
+      td {{ member.html | filterEmail }}

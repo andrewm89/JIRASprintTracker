@@ -30,6 +30,7 @@ body {
 
   .title {
     text-align: center;
+    margin-top: 10px;
   }
 
   .option-block {
@@ -52,6 +53,38 @@ body {
     span {
       display: block;
       font-size: 20px;
+    }
+  }
+
+  .login-box {
+    text-align: center;
+    margin-top: 25px;
+
+    .login_form {
+      border: thin;
+      box-shadow: #003300;
+      background: white;
+      padding: 15px 25px;
+
+      .login-title {
+        margin-top: 15px;
+        margin-bottom: 25px;
+        height: 50px;
+
+        span {
+          float: left;
+        }
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+
+        input {
+          padding: 0 5px;
+          margin-left: 10px;
+          height: 30px;
+        }
+      }
     }
   }
 }
