@@ -8,6 +8,13 @@ angular.module 'JiraSprintTracker.sprint'
 
   $scope.team = {}
 
+  $scope.roles = [
+    'Developer',
+    'Product Owner',
+    'Scrum Master',
+    'Stakeholder'
+  ]
+
   $scope.members = []
 
   $http({

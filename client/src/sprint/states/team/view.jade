@@ -1,11 +1,11 @@
-.container
+.container(ng-cloak)
   .title
     h1 {{ title }}
-
-  table.table.user-table
-    thead
-      th User
-      th Email
-    tr(ng-repeat="member in members")
-      td {{ member.displayName }}
-      td {{ member.html | filterEmail }}
+md-card.layout-padding
+  h3.md-title(layout-align="center end") Manage Team Members
+  div(layout="row")
+    md-input-container
+      label Select a team member
+      md-select(ng-model="team.member")
+        md-optgroup(label="teamMembers")
+          md-option(ng-repeat="member in members" value="{{ member }}") {{ member.displayName }}
