@@ -1,11 +1,32 @@
 .container(ng-cloak)
   .title
     h1 {{ title }}
-md-card.layout-padding
-  h3.md-title(layout-align="center end") Manage Team Members
-  div(layout="row")
-    md-input-container
-      label Select a team member
-      md-select(ng-model="team.member")
-        md-optgroup(label="teamMembers")
-          md-option(ng-repeat="member in members" value="{{ member }}") {{ member.displayName }}
+
+.container
+  form.col-md-6
+    .form-group
+      label(for="memberSelect") Select a member to add:
+      input.form-control#memberSelect(type="text"
+      ng-model="newMember"
+      uib-typeahead="member as member.displayName for member in members | filter:{displayName:$viewValue} | limitTo:8")
+
+    .form-group
+      label(for="memberSelect") Select a role for the new member:
+      select.form-control#memberSelect(ng-model="newMember.role")
+        option(ng-repeat="role in roles" value="{{role}}") {{ role }}
+    .form-group
+      button.btn.btn-default(ng-click="setTeamMember(newMember)") Add
+
+.container
+  table.col-md-9.table
+    thead
+      th Name
+      th Role
+      th Action
+
+    tr(ng-repeat="currentMember in team")
+      td {{ currentMember.displayName }}
+      td {{ currentMember.role }}
+      td
+        i.fa.fa-pencil
+        i.fa.fa-trash(ng-click="removeTeamMember(currentMember)")

@@ -11,6 +11,9 @@ angular.module 'JiraSprintTracker.home'
 
   $scope.credentials = {}
 
+  if $cookies.get("cloud.session.token")
+    $scope.logged_in = true
+
   $scope.login = (credentials) ->
     $http({
       method: "POST"
