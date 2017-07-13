@@ -7,6 +7,7 @@ from server.models import *
 from server.core import mongo
 
 from team import api
+from staffing import api
 
 
 @app.route('/')

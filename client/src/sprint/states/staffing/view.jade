@@ -2,8 +2,26 @@
   .title
     h1 {{ title }}
 
-  .sprint-config
-    md-datepicker(
-      ng-model="sprint.start"
-      md-placeholder="Enter Start Date"
-    )
+.container
+  form.col-md-6
+    .form-group
+      label(for="sprintCreate") Create new sprint:
+      input.form-control#sprintCreate(type="text"
+      placeholder="Type sprint name here"
+      ng-model="newSprintName")
+
+    .form-group
+      button.btn.btn-default(ng-click="newSprint(newSprintName)") Add
+
+  form.col-md-6
+    .form-group
+      select.form-control#sprintSelect(type="text"
+      placeholder="Select a sprint"
+      ng-model="sprintName")
+        option(
+          ng-repeat="sprint in sprints"
+          value="sprint.name"
+        ) {{ sprint.name }}
+
+    .form-group
+      button.btn.btn-default(ng-click="selectSprint(sprintName)") Select
