@@ -10,6 +10,8 @@ angular.module 'JiraSprintTracker.sprint'
 
   $scope.title = 'Sprint Staffing'
 
+  $scope.selectCollapsed = false
+
   $scope.sprints = sprints.data
   $scope.sprint = null
 
@@ -24,6 +26,15 @@ angular.module 'JiraSprintTracker.sprint'
   $scope.open2 = () ->
     $scope.popup2.opened = true
 
+  $scope.collapseSelect = () ->
+    if $scope.selectCollapsed
+      $scope.selectCollapsed = false
+      $('#selectContainer').collapse('show');
+    else
+      $scope.selectCollapsed = true
+      $('#selectContainer').collapse('hide');
+    return
+
   $scope.newSprint = (name) ->
     $scope.sprint =
       name: name
@@ -31,10 +42,12 @@ angular.module 'JiraSprintTracker.sprint'
     sprintUtils.newSprint($scope.sprint)
     $scope.sprints.push($scope.sprint)
     $scope.newSprintName = ""
+    $scope.collapseSelect()
 
   $scope.selectSprint = (name) ->
     $scope.sprint = (_.filter $scope.sprints, (sprint) ->
       sprint.name == name)[0]
+    $scope.collapseSelect()
 
   $scope.updateWorkingDays = () ->
     $scope.sprint.days = staffingUtils.workingDays $scope.sprint.startDate, $scope.sprint.endDate

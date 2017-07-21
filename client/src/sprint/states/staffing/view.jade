@@ -3,38 +3,59 @@
     h1 {{ title }}
 
 .container
-  form.col-md-6
-    .form-group
-      label(for="sprintCreate") Create new sprint:
-      input.form-control#sprintCreate(type="text"
-      placeholder="Type sprint name here"
-      ng-model="newSprintName")
-
-    .form-group
-      button.btn.btn-default(ng-click="newSprint(newSprintName)") Add
-
-  form.col-md-6
-    .form-group
-      select.form-control#sprintSelect(
-        type="text"
-        placeholder="Select a sprint"
-        ng-model="sprintName"
-        ng-change="selectSprint(sprintName)"
+  .row
+    .col-md-12
+      h3.pull-left Select sprint
+      h4.pull-right.select-collapse(
+        ng-click="collapseSelect()"
       )
-        option(
-          ng-repeat="sprint in sprints"
-          value="{{ sprint.name }}"
-        ) {{ sprint.name }}
+        i.fa.fa-chevron-up(ng-if="!selectCollapsed")
+        i.fa.fa-chevron-down(ng-if="selectCollapsed")
+
+      hr(style="border-top: 1px solid black;width: 100%;color: black;height: 1px;margin: 15px 0px;")
+
+  .row
+    .collapse.in.col-md-12#selectContainer
+      form.col-md-12.form-horizontal
+        .form-group.col-md-12
+          label.col-md-3.control-label.text-left(for="sprintCreate") Create new sprint
+          .col-md-9.input-group.sprint-select
+            input.form-control#sprintCreate(type="text"
+            placeholder="Type sprint name here"
+            ng-model="newSprintName")
+            .input-group-btn
+              button.btn(ng-click="newSprint(newSprintName)")
+                i.fa.fa-plus
+
+
+      h4.col-sm-1.sprint-or or
+
+      form.col-md-12.form-horizontal
+        .form-group.col-md-12
+          label.col-md-3.control-label.text-left(for="sprintSelect") Select an existing sprint
+          .col-md-9.sprint-select
+            select.form-control#sprintSelect(
+              type="text"
+              placeholder="Select a sprint"
+              ng-model="sprintName"
+              ng-change="selectSprint(sprintName)"
+            )
+              option(
+                ng-repeat="sprint in sprints"
+                value="{{ sprint.name }}"
+              ) {{ sprint.name }}
 
 .container(ng-if="sprint")
   .row
     .col-md-12
-      h4 {{ sprint.name }}
+      h3 Sprint: {{ sprint.name }}
       hr(style="border-top: 1px solid black;width: 100%;color: black;height: 1px;margin: 15px 0px;")
   .row
-    .col-md-6
+    .col-md-12
+      h4 Sprint dates
+    .col-md-6.form-group
+      label(for="startDate") Start Date
       .input-group
-        label(for="startDate")
         input.form-control#startDate(
           type="text"
           uib-datepicker-popup
@@ -47,15 +68,15 @@
           placeholder="Select start date"
         )
         span.input-group-btn
-          button.btn.btn-default(
+          button.btn(
             type="button"
             ng-click="open1()"
           )
             i.fa.fa-calendar
 
-    .col-md-6
+    .col-md-6.form-group
+      label(for="endDate") End Date
       .input-group
-        label(for="endDate")
         input.form-control#endDate(
         type="text"
         uib-datepicker-popup
@@ -68,7 +89,7 @@
         placeholder="Select end date"
         )
         span.input-group-btn
-          button.btn.btn-default(
+          button.btn(
           type="button"
           ng-click="open2()"
           )
@@ -76,14 +97,15 @@
 
     .col-md-12
       .input-group
-        button.btn.btn-default(
+        button.btn(
           ng-click="updateWorkingDays()"
         ) Update staffing
 
     .col-md-12
-      span Total working days in the sprint: {{ sprint.days.length }}
+      p Total working days in the sprint: {{ sprint.days.length }}
 
     .col-md-12
+      h4 Staffing table
       table.table
         thead
           th Day

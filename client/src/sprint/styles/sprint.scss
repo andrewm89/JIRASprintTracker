@@ -1,3 +1,32 @@
 .staffing-names {
   text-transform: capitalize;
 }
+
+.form-horizontal .control-label{
+  text-align: left;
+}
+
+.sprint-select {
+  padding: 0;
+}
+
+.sprint-or {
+  margin-bottom: 25px;
+  margin-left: 15px;
+  font-weight: 600;
+}
+
+button {
+  color: white;
+  background-color: $header;
+  padding-bottom: 7px;
+}
+
+.select-collapse {
+  margin-top: 25px;
+  margin-bottom: 10px;
+
+  &:hover {
+    cursor: hand;
+  }
+}
