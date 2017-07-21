@@ -25,7 +25,8 @@
     "bootstrap-sass": "3.3.7",
     "please-wait": "0.0.5",
     "font-awesome": "4.7.0",
-    "lodash": "4.17.4"
+    "lodash": "4.17.4",
+    "angular-moment": "1.0.1"
   },
   "overrides": {
     "please-wait": {

@@ -8,7 +8,8 @@
       label(for="memberSelect") Select a member to add:
       input.form-control#memberSelect(type="text"
       ng-model="newMember"
-      uib-typeahead="member as member.displayName for member in members | filter:{displayName:$viewValue} | limitTo:8")
+      uib-typeahead="member as member.displayName for member in members | filter:{displayName:$viewValue} | limitTo:8"
+      autocomplete="off")
 
     .form-group
       label(for="memberSelect") Select a role for the new member:

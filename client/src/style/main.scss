@@ -3,6 +3,8 @@ $fa-font-path: '/static/fonts';
 @import '../../bower_components/font-awesome/scss/font-awesome.scss';
 @import 'colors';
 
+@import '../sprint/styles/sprint';
+
 html {
   min-width: 320px;
   background-color: $background;

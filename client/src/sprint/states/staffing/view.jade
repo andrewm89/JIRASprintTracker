@@ -15,13 +15,84 @@
 
   form.col-md-6
     .form-group
-      select.form-control#sprintSelect(type="text"
-      placeholder="Select a sprint"
-      ng-model="sprintName")
+      select.form-control#sprintSelect(
+        type="text"
+        placeholder="Select a sprint"
+        ng-model="sprintName"
+        ng-change="selectSprint(sprintName)"
+      )
         option(
           ng-repeat="sprint in sprints"
-          value="sprint.name"
+          value="{{ sprint.name }}"
         ) {{ sprint.name }}
 
-    .form-group
-      button.btn.btn-default(ng-click="selectSprint(sprintName)") Select
+.container(ng-if="sprint")
+  .row
+    .col-md-12
+      h4 {{ sprint.name }}
+      hr(style="border-top: 1px solid black;width: 100%;color: black;height: 1px;margin: 15px 0px;")
+  .row
+    .col-md-6
+      .input-group
+        label(for="startDate")
+        input.form-control#startDate(
+          type="text"
+          uib-datepicker-popup
+          ng-model="sprint.startDate"
+          is-open="popup1.opened"
+          datepicker-options="dateOptions"
+          ng-required="true"
+          close-text="Close"
+          alt-input-formats="altInputFormats"
+          placeholder="Select start date"
+        )
+        span.input-group-btn
+          button.btn.btn-default(
+            type="button"
+            ng-click="open1()"
+          )
+            i.fa.fa-calendar
+
+    .col-md-6
+      .input-group
+        label(for="endDate")
+        input.form-control#endDate(
+        type="text"
+        uib-datepicker-popup
+        ng-model="sprint.endDate"
+        is-open="popup2.opened"
+        datepicker-options="dateOptions"
+        ng-required="true"
+        close-text="Close"
+        alt-input-formats="altInputFormats"
+        placeholder="Select end date"
+        )
+        span.input-group-btn
+          button.btn.btn-default(
+          type="button"
+          ng-click="open2()"
+          )
+            i.fa.fa-calendar
+
+    .col-md-12
+      .input-group
+        button.btn.btn-default(
+          ng-click="updateWorkingDays()"
+        ) Update staffing
+
+    .col-md-12
+      span Total working days in the sprint: {{ sprint.days.length }}
+
+    .col-md-12
+      table.table
+        thead
+          th Day
+          th.staffing-names(ng-repeat="member in devTeam") {{ member.name }}
+          th Total
+
+        tbody
+          tr(ng-repeat="day in sprint.days")
+           td {{ day.date | dayFilter }}
+           td(ng-repeat="member in devTeam")
+             span(editable) 0
+           td {{ getRowTotal() }}

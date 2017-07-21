@@ -10,4 +10,4 @@ app:
   command: python /app/runserver.py
 
 db:
-  image: mongo
+  image: mongo:3.4

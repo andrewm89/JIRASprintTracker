@@ -1,4 +1,5 @@
 angular.module 'JiraSprintTracker', [
+  'angularMoment'
   'ng'
   'ngAnimate'
   'ngCookies'

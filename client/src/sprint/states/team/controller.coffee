@@ -2,71 +2,30 @@ angular.module 'JiraSprintTracker.sprint'
 .controller 'SprintTeamCtrl', (
   $scope
   $http
+  group
+  roles
+  team
+  teamUtils
 ) ->
 
   $scope.title = 'Team Management'
 
-  $scope.team = {}
+  $scope.team = team.data
 
-  $scope.roles = [
-    'Developer',
-    'Product Owner',
-    'Scrum Master',
-    'Stakeholder'
-  ]
+  $scope.roles = roles
 
-  $scope.members = []
+  $scope.members = group
 
   $scope.newMember = undefined
 
-  # Get possible team members
-  $http({
-    method:"GET"
-    url:"/users"
-  }).then( (response)->
-    $scope.members = _.filter response.data.users.users, (user) ->
-      return _.includes user.html, "<strong>tind</strong>.io"
-  , (error) ->
-    console.log "Error"
-    console.log error
-  )
-
-  # Get current team members
-  $http({
-    method: "GET"
-    url: "/team/members"
-  }).then( (response) ->
-    $scope.team = response.data
-  , (error) ->
-    console.log "Error"
-    console.log error
-  )
-
   $scope.setTeamMember = (user) ->
-    $http({
-      method: "POST"
-      url: "/team/members/add"
-      data: user
-    }).then( (response) ->
-      $scope.team.push(user)
-      console.log "Team member successfully added"
-    , (error) ->
-      console.log "Error"
-      console.log error
-    )
+    teamUtils.addTeamMember(user)
+    $scope.team.push user
+    $scope.newMember = undefined
 
   $scope.removeTeamMember = (user) ->
-    $http({
-      method: "DELETE"
-      url: "/team/members/remove"
-      data: user
-    }).then( (response) ->
-      _.pull $scope.team, user
-      console.log "Team member successfully removed"
-    , (error) ->
-      console.log "Error"
-      console.log error
-    )
+    teamUtils.removeTeamMember(user)
+    _.pull $scope.team, user
 
 .filter 'filterEmail', () ->
   return (input) ->

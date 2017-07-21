@@ -27,3 +27,12 @@ def new_sprint():
         return Response(status=204)
     except:
         return Response(status=400)
+
+@app.route('/staffing/sprints', methods=['PUT'])
+def update_sprints():
+    try:
+        sprint = request.get_json()
+        mongo.db.sprints.update_one({"name": sprint["name"]}, {"$set":sprint})
+        return Response(status=204)
+    except:
+        return Response(status=400)
