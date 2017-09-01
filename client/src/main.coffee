@@ -12,6 +12,7 @@ angular.module 'JiraSprintTracker', [
   'JiraSprintTracker.sprint'
   'JiraSprintTracker.stats'
   'JiraSprintTracker.template'
+  'JiraSprintTracker.utils'
 ]
 
 .run ($location, $rootScope, $window) ->

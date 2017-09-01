@@ -6,15 +6,37 @@ from server import app
 from server.models import *
 from server.core import mongo
 
+@app.route('/staffing/boards', methods=['GET'])
+def get_boards():
+    req = urllib2.Request("https://tindtechnologies.atlassian.net/rest/agile/1.0/board?type=scrum")
+    req.add_header("Content-Type","application/json")
+    cookies = request.cookies
+    if "cloud.session.token" in cookies:
+        req.add_header("Cookie", "cloud.session.token=%s" % cookies["cloud.session.token"])
+    response = urllib2.urlopen(req)
 
-@app.route('/staffing/sprints', methods=['GET'])
-def get_sprints():
+    return response.read()
+
+@app.route('/staffing/sprints/<board_id>', methods=['GET'])
+def get_sprints(board_id):
+    req = urllib2.Request("https://tindtechnologies.atlassian.net/rest/agile/1.0/board/{board_id}/sprint?maxResults=100&startAt=50".format(board_id=board_id))
+    req.add_header("Content-Type","application/json")
+    cookies = request.cookies
+    if "cloud.session.token" in cookies:
+        req.add_header("Cookie", "cloud.session.token=%s" % cookies["cloud.session.token"])
+    response = urllib2.urlopen(req)
+
+    return response.read()
+
+@app.route('/staffing/sprints/db/<path:name>', methods=['GET'])
+def get_sprint_from_db(name):
     try:
-        sprints = []
-        for sprint in mongo.db.sprints.find({}, {'_id':0}):
-            sprints.append(sprint)
+        for sprint in mongo.db.sprints.find({"name": name}, {'_id':0}):
+            resp = jsonify(sprint)
+            resp.status_code = 200
+            return resp
 
-        resp = jsonify(sprints)
+        resp = jsonify([])
         resp.status_code = 200
         return resp
     except:

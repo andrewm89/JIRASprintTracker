@@ -20,8 +20,8 @@ angular.module 'JiraSprintTracker.sprint', [
     controller: 'SprintStaffingCtrl'
     templateUrl: 'sprint/states/staffing/view.html'
     resolve:
-      sprints: ($stateParams, sprintUtils) ->
-        sprintUtils.getSprints()
+      boards: ($stateParams, sprintUtils) ->
+        sprintUtils.getBoards()
       devTeam: ($stateParams, teamUtils) ->
         teamUtils.getDevTeam()
 
