@@ -9,6 +9,13 @@ angular.module 'JiraSprintTracker.sprint', [
     url: '/sprint'
     abstract: true
     template: '<ui-view/>'
+    resolve:
+      check: ($q, authUtils) ->
+        if authUtils.isLogged()
+          $q.resolve({})
+        else
+          $q.reject
+            redirectState: 'login'
 
   .state 'sprint.main',
     url: '/'

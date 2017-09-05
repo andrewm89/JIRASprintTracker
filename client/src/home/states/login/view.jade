@@ -1,0 +1,17 @@
+.container
+  .title
+    h1 {{ title }}
+
+  .login-box.col-sm-10.col-sm-offset-1.col-md-6.col-md-offset-3
+    form.form-horizontal.login_form
+      .login-title
+        img.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3.title-logo(ng-src="static/images/jirasoftware_rgb_slate.png")
+        span &#0174;
+      .form-group
+        label.col-sm-2.control-label(for="username") Username
+        input.col-sm-9#username(type="text" ng-model="credentials.username")
+      .form-group
+        label.col-sm-2.control-label(for="password") Password
+        input.col-sm-9#password(type="password" ng-model="credentials.password")
+      .form-group
+        button.btn.btn-primary(ng-click="login(credentials)" ng-keyup="$event.keyCode == 13 && login(credentials)") Login
