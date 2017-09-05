@@ -9,6 +9,13 @@ angular.module 'JiraSprintTracker.sprint', [
     url: '/sprint'
     abstract: true
     template: '<ui-view/>'
+    resolve:
+      check: ($q, authUtils) ->
+        if authUtils.isLogged()
+          $q.resolve({})
+        else
+          $q.reject
+            redirectState: 'login'
 
   .state 'sprint.main',
     url: '/'
@@ -20,8 +27,8 @@ angular.module 'JiraSprintTracker.sprint', [
     controller: 'SprintStaffingCtrl'
     templateUrl: 'sprint/states/staffing/view.html'
     resolve:
-      sprints: ($stateParams, sprintUtils) ->
-        sprintUtils.getSprints()
+      boards: ($stateParams, sprintUtils) ->
+        sprintUtils.getBoards()
       devTeam: ($stateParams, teamUtils) ->
         teamUtils.getDevTeam()
 

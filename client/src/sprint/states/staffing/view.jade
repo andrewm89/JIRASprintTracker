@@ -18,37 +18,39 @@
     .collapse.in.col-md-12#selectContainer
       form.col-md-12.form-horizontal
         .form-group.col-md-12
-          label.col-md-3.control-label.text-left(for="sprintCreate") Create new sprint
-          .col-md-9.input-group.sprint-select
-            input.form-control#sprintCreate(type="text"
-            placeholder="Type sprint name here"
-            ng-model="newSprintName")
-            .input-group-btn
-              button.btn(ng-click="newSprint(newSprintName)")
-                i.fa.fa-plus
+          label.col-md-3.control-label.text-left(for="boardSelect") Select a JIRA board
+          .col-md-9.sprint-select
+            select.form-control#boardSelect(
+            type="text"
+            placeholder="Select a board"
+            ng-model="boardId"
+            ng-change="selectBoard(boardId)"
+            )
+              option(
+              ng-repeat="board in boards | orderBy:'name'"
+              value="{{ board.id }}"
+              ) {{ board.name }}
 
-
-      h4.col-sm-1.sprint-or or
-
-      form.col-md-12.form-horizontal
+      form.col-md-12.form-horizontal(ng-if="JIRASprints.length > 0")
         .form-group.col-md-12
           label.col-md-3.control-label.text-left(for="sprintSelect") Select an existing sprint
           .col-md-9.sprint-select
             select.form-control#sprintSelect(
               type="text"
               placeholder="Select a sprint"
-              ng-model="sprintName"
-              ng-change="selectSprint(sprintName)"
+              ng-model="selectedSprint"
+              ng-change="selectSprint(selectedSprint)"
             )
               option(
-                ng-repeat="sprint in sprints"
+                ng-repeat="sprint in JIRASprints"
                 value="{{ sprint.name }}"
-              ) {{ sprint.name }}
+              ) {{ sprint.name }} ({{ sprint.state }})
 
 .container(ng-if="sprint")
   .row
     .col-md-12
       h3 Sprint: {{ sprint.name }}
+      h5(ng-if="sprint.goal") Goal: {{ sprint.goal }}
       hr(style="border-top: 1px solid black;width: 100%;color: black;height: 1px;margin: 15px 0px;")
   .row
     .col-md-12
@@ -115,6 +117,11 @@
         tbody
           tr(ng-repeat="day in sprint.days")
            td {{ day.date | dayFilter }}
-           td(ng-repeat="member in devTeam")
-             span(editable) 0
-           td {{ getRowTotal() }}
+           td(ng-repeat="member in devTeam"
+              ng-model="day.members[member.key]"
+              ng-blur="updateStaffing()"
+              strip-br="true"
+              contenteditable
+              required
+           )
+           td {{ day.total }}

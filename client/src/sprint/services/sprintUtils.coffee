@@ -1,9 +1,21 @@
 angular.module 'JiraSprintTracker.sprint'
 .service 'sprintUtils', ($http) ->
-  getSprints: () ->
+  getBoards: () ->
     return $http({
       method: "GET"
-      url: "/staffing/sprints"
+      url: "/staffing/boards"
+    })
+
+  getSprints: (board_id) ->
+    return $http({
+      method: "GET"
+      url: "/staffing/sprints/" + board_id
+    })
+
+  getSprintFromDB: (name) ->
+    return $http({
+      method: "GET"
+      url: "/staffing/sprints/db/" + encodeURIComponent(name)
     })
 
   newSprint: (sprint) ->
