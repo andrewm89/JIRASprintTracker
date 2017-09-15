@@ -1,34 +1,34 @@
 angular.module 'JiraSprintTracker.sprint'
 .service 'teamUtils', ($http) ->
-  getGroupMembers: () ->
+  getGroupMembers: ->
     return $http({
-      method:"GET"
-      url:"/users"
-    }).then( (response)->
+      method: 'GET'
+      url: '/users'
+    }).then( (response) ->
       return _.filter response.data.users.users, (user) ->
-        return _.includes user.html, "<strong>tind</strong>.io"
+        return _.includes user.html, '<strong>tind</strong>.io'
     , (error) ->
-      console.log "Error"
+      console.log 'Error'
       console.log error
     )
 
-  getTeam: () ->
+  getTeam: ->
     return $http({
-      method: "GET"
-      url: "/team/members"
+      method: 'GET'
+      url: '/team/members'
     })
 
-  getDevTeam: () ->
+  getDevTeam: ->
     return $http({
-      method: "GET"
-      url: "/team/members"
+      method: 'GET'
+      url: '/team/members'
     }).then (data) ->
       return _.filter data.data, (member) ->
-        member.role is "Developer"
+        member.role is 'Developer'
     , (error) ->
       console.log error
 
-  getRoles: () ->
+  getRoles: ->
     return [
       'Developer',
       'Product Owner',
@@ -38,8 +38,8 @@ angular.module 'JiraSprintTracker.sprint'
 
   addTeamMember: (user) ->
     return $http({
-      method: "POST"
-      url: "/team/members/add"
+      method: 'POST'
+      url: '/team/members/add'
       data: user
     }).then( (response) ->
       return user
@@ -49,8 +49,8 @@ angular.module 'JiraSprintTracker.sprint'
 
   removeTeamMember: (user) ->
     return $http({
-      method: "DELETE"
-      url: "/team/members/remove"
+      method: 'DELETE'
+      url: '/team/members/remove'
       data: user
     }).then( (response) ->
       return user

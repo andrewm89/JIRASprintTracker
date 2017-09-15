@@ -23,13 +23,13 @@ angular.module 'JiraSprintTracker.sprint'
   $scope.popup1 = {opened: false}
   $scope.popup2 = {opened: false}
 
-  $scope.open1 = () ->
+  $scope.open1 = ->
     $scope.popup1.opened = true
 
-  $scope.open2 = () ->
+  $scope.open2 = ->
     $scope.popup2.opened = true
 
-  $scope.collapseSelect = () ->
+  $scope.collapseSelect = ->
     if $scope.selectCollapsed
       $scope.selectCollapsed = false
       $('#selectContainer').collapse('show')
@@ -54,7 +54,7 @@ angular.module 'JiraSprintTracker.sprint'
 
   $scope.selectSprint = (name) ->
     $scope.sprint = (_.filter $scope.sprints, (sprint) ->
-      sprint.name == name)[0]
+      sprint.name is name)[0]
     if not $scope.sprint
       sprintUtils.getSprintFromDB name
       .then (response) ->
@@ -67,7 +67,7 @@ angular.module 'JiraSprintTracker.sprint'
         console.log error
     $scope.collapseSelect()
 
-  $scope.updateWorkingDays = () ->
+  $scope.updateWorkingDays = ->
     newDays = staffingUtils.workingDays $scope.sprint.startDate, $scope.sprint.endDate
     if not $scope.sprint.days
       $scope.sprint.days = newDays
@@ -77,13 +77,13 @@ angular.module 'JiraSprintTracker.sprint'
       if 'members' not in day
         members = {}
         _.forEach devTeam, (member) ->
-          members[member.key] = "0"
+          members[member.key] = '0'
         day.members = members
-        day.total = "0"
+        day.total = '0'
 
     sprintUtils.updateSprint($scope.sprint)
 
-  $scope.updateStaffing = () ->
+  $scope.updateStaffing = ->
     _.forEach $scope.sprint.days, (day) ->
       total = 0
       _.forEach day.members, (member) ->
@@ -91,7 +91,3 @@ angular.module 'JiraSprintTracker.sprint'
       day.total = String total
 
     sprintUtils.updateSprint($scope.sprint)
-
-.filter 'dayFilter', (moment) ->
-  return (date) ->
-    return moment(date).format('dddd - DD/MM')

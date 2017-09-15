@@ -1,3 +1,80 @@
 .container
   .title
     h1 {{ title }}
+
+.container
+  .row
+    .col-md-12
+      h3.pull-left Select sprint
+      h4.pull-right.select-collapse(
+      ng-click="collapseSelect()"
+      )
+        i.fa.fa-chevron-up(ng-if="!selectCollapsed")
+        i.fa.fa-chevron-down(ng-if="selectCollapsed")
+
+      hr(style="border-top: 1px solid black;width: 100%;color: black;height: 1px;margin: 15px 0px;")
+
+  .row
+    .collapse.in.col-md-12#selectContainer
+      form.col-md-12.form-horizontal
+        .form-group.col-md-12
+          label.col-md-3.control-label.text-left(for="sprintSelect") Select an existing sprint
+          .col-md-9.sprint-select
+            select.form-control#sprintSelect(
+            type="text"
+            placeholder="Select a sprint"
+            ng-model="selectedSprint"
+            ng-change="selectSprint(selectedSprint)"
+            )
+              option(
+              ng-repeat="sprint in sprints | orderBy: 'name'"
+              value="{{ sprint.name }}"
+              ) {{ sprint.name }}
+
+.container(ng-if="sprint")
+  .sprint-progress-table.col-md-12
+    h4 Sprint Progress
+    table.table
+      thead
+        th Day
+        th Points per Day
+        th Points Complete
+        th Theoretical
+        th Actual
+        th Diff
+      tbody
+        tr(ng-repeat="day in sprint.days")
+          td {{ day.date | dayFilter }}
+          td {{ sprint.progress[day.date].ppd }}
+          td(
+            ng-model="sprint.progress[day.date].pointsComplete"
+            ng-blur="updateSprint()"
+            strip-br="true"
+            contenteditable
+            required
+          )
+          td {{ sprint.progress[day.date].theoretical }}
+          td(
+            ng-model="sprint.progress[day.date].actual"
+            ng-blur="updateSprint()"
+            strip-br="true"
+            contenteditable
+            required
+          )
+          td(
+            ng-model="sprint.progress[day.date].diff"
+            ng-blur="updateSprint()"
+            strip-br="true"
+            contenteditable
+            required
+          )
+
+  .bdc-chart(ng-if="chartReady")
+    canvas(
+      id="line"
+      class="chart chart-line"
+      chart-data="data"
+      chart-labels="labels"
+      chart-series="series"
+      chart-colors="colours"
+      chart-options="options")

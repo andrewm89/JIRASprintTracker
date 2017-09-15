@@ -27,6 +27,6 @@ angular.module 'JiraSprintTracker.sprint'
     teamUtils.removeTeamMember(user)
     _.pull $scope.team, user
 
-.filter 'filterEmail', () ->
+.filter 'filterEmail', ->
   return (input) ->
-    return input.split("- ")[1].split(" (")[0].replace("<strong>","").replace("</strong>","")
+    return input.split('- ')[1].split(' (')[0].replace('<strong>','').replace('</strong>','')

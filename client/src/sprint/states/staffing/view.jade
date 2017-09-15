@@ -80,15 +80,15 @@
       label(for="endDate") End Date
       .input-group
         input.form-control#endDate(
-        type="text"
-        uib-datepicker-popup
-        ng-model="sprint.endDate"
-        is-open="popup2.opened"
-        datepicker-options="dateOptions"
-        ng-required="true"
-        close-text="Close"
-        alt-input-formats="altInputFormats"
-        placeholder="Select end date"
+          type="text"
+          uib-datepicker-popup
+          ng-model="sprint.endDate"
+          is-open="popup2.opened"
+          datepicker-options="dateOptions"
+          ng-required="true"
+          close-text="Close"
+          alt-input-formats="altInputFormats"
+          placeholder="Select end date"
         )
         span.input-group-btn
           button.btn(
@@ -96,6 +96,14 @@
           ng-click="open2()"
           )
             i.fa.fa-calendar
+
+    .col-md-6.form-group
+      label(for="velocity") Sprint Velocity
+      input.form-control(
+        ng-model="sprint.velocity"
+        ng-required="true"
+        placeholder="Enter the sprint velocity"
+      )
 
     .col-md-12
       .input-group

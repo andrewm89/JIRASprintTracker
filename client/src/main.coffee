@@ -6,6 +6,7 @@ angular.module 'JiraSprintTracker', [
   'ngSanitize'
   'ui.router'
   'ui.bootstrap'
+  'chart.js'
   'JiraSprintTracker.home'
   'JiraSprintTracker.bdc'
   'JiraSprintTracker.blog'

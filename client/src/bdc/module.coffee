@@ -16,3 +16,5 @@ angular.module 'JiraSprintTracker.bdc', [
         else
           $q.reject
             redirectState: 'login'
+      sprints: ($stateParams, sprintUtils) ->
+        sprintUtils.getSprintsFromDB()

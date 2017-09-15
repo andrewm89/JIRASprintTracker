@@ -1,27 +1,33 @@
 angular.module 'JiraSprintTracker.sprint'
 .service 'sprintUtils', ($http) ->
-  getBoards: () ->
+  getBoards: ->
     return $http({
-      method: "GET"
-      url: "/staffing/boards"
+      method: 'GET'
+      url: '/sprint/boards'
     })
 
   getSprints: (board_id) ->
     return $http({
-      method: "GET"
-      url: "/staffing/sprints/" + board_id
+      method: 'GET'
+      url: '/sprint/sprints/' + board_id
     })
 
   getSprintFromDB: (name) ->
     return $http({
-      method: "GET"
-      url: "/staffing/sprints/db/" + encodeURIComponent(name)
+      method: 'GET'
+      url: '/sprint/sprints/db/' + encodeURIComponent(name)
+    })
+
+  getSprintsFromDB: ->
+    return $http({
+      method: 'GET'
+      url: '/sprint/sprints/db'
     })
 
   newSprint: (sprint) ->
     return $http({
-      method: "POST"
-      url: "/staffing/sprints/new"
+      method: 'POST'
+      url: '/sprint/sprints/new'
       data: sprint
     }).then (data) ->
       return data
@@ -30,8 +36,8 @@ angular.module 'JiraSprintTracker.sprint'
 
   updateSprint: (sprint) ->
     return $http({
-      method: "PUT"
-      url: "/staffing/sprints"
+      method: 'PUT'
+      url: '/sprint/sprints'
       data: sprint
     }).then (data) ->
       return data

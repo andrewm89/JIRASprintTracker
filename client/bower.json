@@ -26,7 +26,8 @@
     "please-wait": "0.0.5",
     "font-awesome": "4.7.0",
     "lodash": "4.17.4",
-    "angular-moment": "1.0.1"
+    "angular-moment": "1.0.1",
+    "angular-chart.js": "angular-chartjs#~1.1.1"
   },
   "overrides": {
     "please-wait": {

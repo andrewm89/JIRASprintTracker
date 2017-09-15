@@ -6,14 +6,14 @@ angular.module 'JiraSprintTracker.utils', ['ngSanitize']
     if not ngModel
       return
 
-    ngModel.$render = () ->
+    ngModel.$render = ->
       element.html $sce.getTrustedHtml(ngModel.$viewValue or '')
       read()
 
-    element.on 'blur keyup change', () ->
+    element.on 'blur keyup change', ->
       scope.$evalAsync read
 
-    read = () ->
+    read = ->
       html = element.html()
       if attrs.stripBr and html is '<br>'
         html = ''
