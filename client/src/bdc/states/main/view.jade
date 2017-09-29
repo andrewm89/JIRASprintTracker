@@ -33,7 +33,7 @@
 
 .container(ng-if="sprint")
   .sprint-progress-table.col-md-12
-    h4 Sprint Progress
+    h4 Sprint Progress (Total points: {{ totalPoints }})
     table.table
       thead
         th Day
@@ -43,31 +43,22 @@
         th Actual
         th Diff
       tbody
-        tr(ng-repeat="day in sprint.days")
+        tr(
+          ng-repeat="day in sprint.days"
+          ng-class="!sprint.progress[day.date].diff ? [] : sprint.progress[day.date].diff > 0 ? 'behind' : 'ahead'"
+        )
           td {{ day.date | dayFilter }}
           td {{ sprint.progress[day.date].ppd }}
           td(
             ng-model="sprint.progress[day.date].pointsComplete"
-            ng-blur="updateSprint()"
+            ng-blur="updateProgress()"
             strip-br="true"
             contenteditable
             required
           )
           td {{ sprint.progress[day.date].theoretical }}
-          td(
-            ng-model="sprint.progress[day.date].actual"
-            ng-blur="updateSprint()"
-            strip-br="true"
-            contenteditable
-            required
-          )
-          td(
-            ng-model="sprint.progress[day.date].diff"
-            ng-blur="updateSprint()"
-            strip-br="true"
-            contenteditable
-            required
-          )
+          td {{ sprint.progress[day.date].actual }}
+          td {{ sprint.progress[day.date].diff }}
 
   .bdc-chart(ng-if="chartReady")
     canvas(

@@ -10,11 +10,5 @@ angular.module 'JiraSprintTracker.bdc', [
     controller: 'BDCMainCtrl'
     templateUrl: 'bdc/states/main/view.html'
     resolve:
-      check: ($q, authUtils) ->
-        if authUtils.isLogged()
-          $q.resolve({})
-        else
-          $q.reject
-            redirectState: 'login'
       sprints: ($stateParams, sprintUtils) ->
         sprintUtils.getSprintsFromDB()

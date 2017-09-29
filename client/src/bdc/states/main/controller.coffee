@@ -3,6 +3,7 @@ angular.module 'JiraSprintTracker.bdc'
   $scope
   sprints
   bdcUtils
+  sprintUtils
 ) ->
 
   $scope.title = 'Burndown Chart'
@@ -55,14 +56,18 @@ angular.module 'JiraSprintTracker.bdc'
       $('#selectContainer').collapse('hide')
     return
 
+  $scope.totalPoints = undefined
+
   $scope.selectSprint = (name) ->
     $scope.sprint = (_.filter $scope.sprints, (sprint) ->
       sprint.name is name)[0]
+    $scope.totalPoints = bdcUtils.getStartingPoints $scope.sprint
     initChart()
-    bdcUtils.calculateProgress($scope.sprint, $scope.labels, $scope.data)
-    console.log $scope.sprint.progress
+    bdcUtils.calculateProgress($scope.sprint, $scope.labels, $scope.data, $scope.totalPoints)
     $scope.chartReady = true
     $scope.collapseSelect()
 
-#  $scope.updateSprint = () ->
-#    sprintUtils.updateSprint($scope.sprint)
+  $scope.updateProgress = ->
+    initChart()
+    bdcUtils.calculateProgress($scope.sprint, $scope.labels, $scope.data, $scope.totalPoints)
+    sprintUtils.updateSprint $scope.sprint

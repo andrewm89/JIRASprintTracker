@@ -7,13 +7,13 @@ angular.module 'JiraSprintTracker', [
   'ui.router'
   'ui.bootstrap'
   'chart.js'
+  'JiraSprintTracker.utils'
   'JiraSprintTracker.home'
   'JiraSprintTracker.bdc'
   'JiraSprintTracker.blog'
   'JiraSprintTracker.sprint'
   'JiraSprintTracker.stats'
   'JiraSprintTracker.template'
-  'JiraSprintTracker.utils'
 ]
 
 .run ($location, $rootScope, $window, $state) ->
